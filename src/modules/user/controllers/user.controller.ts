@@ -16,7 +16,7 @@ import { UserService } from '../services/user.service';
 import { UpdateUserDto } from '../dtos/update-user.dto';
 import { QueryUserDto } from '../dtos/query-user.dto';
 import { CreateUserDto } from '../dtos/create-user.dto';
-import { RequredRole } from 'src/common/decorators/auth.decorator';
+import { RequiredRole } from 'src/common/decorators/auth.decorator';
 import { RoleGuard } from 'src/modules/auth/guards/role.guard';
 import { Role } from '../enums/role.enum';
 import { PageDto, PageOptionsDto } from 'src/common/dtos/pages';
@@ -25,7 +25,7 @@ import { ApiPaginatedResponse } from 'src/common/decorators/api-paginate-respons
 
 @Controller('users')
 @UseGuards(RoleGuard)
-@RequredRole(Role.ADMIN)
+@RequiredRole(Role.ADMIN)
 @ApiBearerAuth()
 @ApiTags('Users')
 @UseInterceptors(ClassSerializerInterceptor)
