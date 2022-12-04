@@ -9,4 +9,5 @@ export default registerAs('redis', () => ({
   tls: {
     host: process.env.REDIS_TLS_HOST || 'localhost',
   },
+  maxCompletedJobs: process.env.REDIS_MAX_COMPLETED_JOBS || 1000,
 }));

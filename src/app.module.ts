@@ -74,8 +74,17 @@ import { AuthModule } from './modules/auth/auth.module';
           };
         }
 
+        const maxCompletedJobs = configService.get<number>(
+          'redis.maxCompletedJobs',
+        );
+
         return {
           redis: redisConfig,
+          defaultJobOptions: {
+            removeOnComplete: {
+              count: maxCompletedJobs,
+            },
+          },
         };
       },
     }),
