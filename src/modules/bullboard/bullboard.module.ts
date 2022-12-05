@@ -18,13 +18,16 @@ import * as basicAuth from 'express-basic-auth';
 })
 export class BullBoardModule implements NestModule {
   @Inject(getQueueToken(QueueEnum.MailQueueName))
-  private readonly queue: Queue;
+  private readonly mailQueue: Queue;
 
   constructor(private configService: ConfigService) {}
 
   configure(consumer: MiddlewareConsumer) {
     const serverAdapter = new ExpressAdapter();
-    createBullBoard({ queues: [new BullAdapter(this.queue)], serverAdapter });
+    createBullBoard({
+      queues: [new BullAdapter(this.mailQueue)],
+      serverAdapter,
+    });
     serverAdapter.setBasePath('/bullboard');
 
     const bullboardUsername =
